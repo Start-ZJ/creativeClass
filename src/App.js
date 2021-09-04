@@ -17,7 +17,8 @@ import About from './pageManage/About/About';
 import Users from './pageManage/Users/Users';
 import LoginPage from './pageManage/LoginPage/LoginPage';
 import NoFindPage from './pageManage/noFindPage/noFindPage';
-require('./appStyle.less');
+import * as style from './appStyle.less';
+// require('./appStyle.less');
 /* 页面组件引入结束 */
 const { SubMenu } = Menu;
 
@@ -54,6 +55,12 @@ function RouteWithSubRoutes(route) {
     />
   );
 }
+function renderUserImg(userImg) {
+  return <div
+    className='Navigation-userImg'>
+    <img src={require('./image/45df4d8148e5453b823e23e1f8308241_view_720.jpg').default} />
+  </div>
+}
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -69,7 +76,10 @@ class App extends React.Component {
   render() {
     const { current } = this.state;
     let reduxState = store.getState();
-    let isLogin = reduxState.UserState.userParams[0].isLogin;
+    console.log(" reduxState", reduxState)
+    let isLogin = reduxState.UserState.userParams[0].isLogin;//登录状态
+    let userImg = reduxState.UserState.userParams[0].userImg;//用户头像
+    let userName = reduxState.UserState.userParams[0].userName;//用户姓名
     return (
       <HashRouter>
         <Router>
@@ -77,7 +87,15 @@ class App extends React.Component {
             {isLogin ?
               <>
                 <div className='Router-content-Navigation'>
-                  <Avatar icon={<UserOutlined />} />
+                  <div className='Router-content-Navigation-left'>
+                    {userImg && userImg.length > 0 ?
+                    renderUserImg(userImg) :
+                    <Avatar
+                      icon={<UserOutlined />}
+                    />}
+                    <div className='Navigation-userName'>{userName}</div>
+                  </div>
+                  
                   <Menu
                     className='Router-contentMenu'
                     onClick={this.handleClick}

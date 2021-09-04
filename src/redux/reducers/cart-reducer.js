@@ -3,10 +3,13 @@ import { Get_User_Parameter, Clear_User_Parameter } from './../actions/cart-acti
 
 const initialState = {
   userParams: [{
-    account: '',
-    passWord: '',
-    userType: -1,
-    isLogin: false,
+    userName:'张矢',//用户名
+    userAge:'18',//用户年龄
+    userImg:'',//头像
+    userSeX:'1',//性别
+    passWord: '',//密码
+    userType: -1,//用户类型
+    isLogin: false,//是否是登录状态
   }]
 }
 
@@ -16,7 +19,7 @@ export default function UserState(state = initialState, action) {
       return {
         ...state,
         userParams: [{
-          account: action.payload.account,
+          userName:action.payload.userName,
           passWord: action.payload.passWord,
           userType: action.payload.userType,
           isLogin: action.payload.isLogin

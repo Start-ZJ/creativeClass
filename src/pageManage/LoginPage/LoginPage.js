@@ -13,11 +13,12 @@ class LoginPage extends React.Component {
         }
     }
     componentWillMount() {
+        this.funLogic();//不想测登录了，直接登录
     }
     funLogic = () => {
         let { inputUserName, inputUserPassWord } = this.state;
-        // store.dispatch(getUserParameter('admin', '123456zj'));
-        store.dispatch(getUserParameter(inputUserName, inputUserPassWord));
+        store.dispatch(getUserParameter('admin', '123456zj'));
+        // store.dispatch(getUserParameter(inputUserName, inputUserPassWord));
     }
     // 简单的交互事件
     simpleInteractiveEvents = (type, value) => {
