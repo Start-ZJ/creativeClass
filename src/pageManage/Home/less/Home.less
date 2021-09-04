@@ -1,0 +1,21 @@
+.Home-center{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    .Home-center-left{
+        width: calc(100% - 200px);
+        height: 100%;
+        overflow: auto;
+    }
+    .Home-center-left::-webkit-scrollbar{
+        width: 1px;
+        border: 0;
+    }
+    .Home-center-right{
+        width: 200px;
+        height: 100%;
+    }
+}

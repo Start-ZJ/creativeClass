@@ -1,0 +1,7 @@
+subscribe()方法
+- 每次更新数据之后都会通过subscribe方法发布最新的数据，所以一般subscribe方法的回调里都会用setState更新到最新的数据
+
+
+理解
+Redux中分为三个部分
+一个是actions 用于处理想要改变的数据，接下来是reducers，用于将sctions发来的数据进行存储，最后是store，则是用于存储数据的地方
