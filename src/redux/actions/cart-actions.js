@@ -43,5 +43,5 @@ export const getUserParameter = (_userName, _passWord) => dispath => {
     // }).catch(function (error) {
     //     console.log(error);
     // });
-    dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '1' }))
+    dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {config} from './../../config/index';
 import { message } from 'antd';
 require('./less/Home.less')
 class Home extends React.Component {
@@ -23,9 +24,9 @@ class Home extends React.Component {
             pageLimit,
             keyWord
         }
-        axios.post('http://127.0.0.1:9000/getTableList.html', params).then(function (response) {
+        axios.post(`${config.port}/getTableList.html`, params).then(function (response) {
             let callBackData = response.data;
-            if (callBackData.state){
+            if (callBackData.state) {
                 this.setState({
                     listAry: callBackData.list
                 })

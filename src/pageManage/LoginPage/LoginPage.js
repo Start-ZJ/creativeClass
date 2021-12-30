@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
         }
     }
     componentWillMount() {
-        this.funLogic();//不想测登录了，直接登录
+        // this.funLogic();//不想测登录了，直接登录
     }
     funLogic = () => {
         let { inputUserName, inputUserPassWord } = this.state;

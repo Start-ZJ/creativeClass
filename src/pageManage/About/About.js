@@ -13,8 +13,13 @@ class About extends React.Component {
     }
     render() {
         return (
-            <div>
-                <Button onClick={() => { this.click() }}>About</Button>
+            // <div>
+            //     <Button onClick={() => { this.click() }}>About</Button>
+            // </div>
+            <div className='father'>
+                <div className='father_son'>
+                    <div className='father_son2'></div>
+                </div>
             </div>
         )
     }

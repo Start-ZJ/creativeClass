@@ -76,7 +76,6 @@ class App extends React.Component {
   render() {
     const { current } = this.state;
     let reduxState = store.getState();
-    console.log(" reduxState", reduxState)
     let isLogin = reduxState.UserState.userParams[0].isLogin;//登录状态
     let userImg = reduxState.UserState.userParams[0].userImg;//用户头像
     let userName = reduxState.UserState.userParams[0].userName;//用户姓名
