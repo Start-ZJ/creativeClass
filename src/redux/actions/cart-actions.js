@@ -21,27 +21,29 @@ export const login_out = () => {
 }
 // 调用登录接口，获取用户数据的方法
 export const getUserParameter = (_userName, _passWord) => dispath => {
-    // axios.post('http://127.0.0.1:9000/user/login.html', {
-    //     'userName': _userName,
-    //     'passWord': _passWord
-    // }).then(function (response) {
-    //     let callBackData = response.data;
-    //     if (callBackData.isHaveUser) {
-    //         message.success('登录成功!');
-    //         let userName = _userName;
-    //         let passWord = _passWord;
-    //         let userType = 1;
-    //         let isLogin = false;
-    //         setTimeout(() => {
-    //             isLogin = true;
-    //             dispath(login_ok({ userName, passWord, userType, isLogin }))
-    //         }, 1000)
-    //     } else {
-    //         message.error('账号或密码错误!');
-    //         dispath(login_out())
-    //     }
-    // }).catch(function (error) {
-    //     console.log(error);
-    // });
-    dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
+    axios.post('http://127.0.0.1:7002/home/userLogin', /* {
+        userName: _userName,
+        passWord: _passWord
+    } */`userName=${_userName}&passWord=${_passWord}`, {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    }).then(function (response) {
+        let callBackData = response.data;
+        if (callBackData.isHaveUser) {
+            message.success('登录成功!');
+            let userName = _userName;
+            let passWord = _passWord;
+            let userType = 1;
+            let isLogin = false;
+            setTimeout(() => {
+                isLogin = true;
+                dispath(login_ok({ userName, passWord, userType, isLogin }))
+            }, 1000)
+        } else {
+            message.error('账号或密码错误!');
+            dispath(login_out())
+        }
+    }).catch(function (error) {
+        console.log(error);
+    });
+    // dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
 }

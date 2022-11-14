@@ -71,7 +71,6 @@ class App extends React.Component {
                                             />}
                                         <div className='Navigation-userName'>{userName}</div>
                                     </div>
-
                                     <Menu
                                         className='Router-contentMenu'
                                         onClick={this.handleClick}
