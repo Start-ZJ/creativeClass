@@ -1,6 +1,6 @@
 import config from './config';
-import kk from './axios';
-export  {
+import _axios from './axios';
+export {
     config,
-    kk
+    _axios
 }

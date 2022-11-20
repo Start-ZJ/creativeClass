@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { config, _axios } from './../../config';
 import { message } from 'antd';
 // 用于定义派发的任务类型和所需的任务参数
 export const Get_User_Parameter = 'Get_User_Parameter';//获取用户登录数据
@@ -21,11 +21,9 @@ export const login_out = () => {
 }
 // 调用登录接口，获取用户数据的方法
 export const getUserParameter = (_userName, _passWord) => dispath => {
-    axios.post('http://127.0.0.1:7002/home/userLogin', /* {
+    _axios(`${config.port}/home/userLogin`, {
         userName: _userName,
-        passWord: _passWord
-    } */`userName=${_userName}&passWord=${_passWord}`, {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+        passWord: _passWord,
     }).then(function (response) {
         let callBackData = response.data;
         if (callBackData.isHaveUser) {
@@ -37,6 +35,7 @@ export const getUserParameter = (_userName, _passWord) => dispath => {
             setTimeout(() => {
                 isLogin = true;
                 dispath(login_ok({ userName, passWord, userType, isLogin }))
+                // dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
             }, 1000)
         } else {
             message.error('账号或密码错误!');
@@ -45,5 +44,4 @@ export const getUserParameter = (_userName, _passWord) => dispath => {
     }).catch(function (error) {
         console.log(error);
     });
-    // dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
 }
