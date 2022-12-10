@@ -371,6 +371,10 @@ module.exports = function (webpackEnv) {
                   sourceMap: isEnvProduction
                     ? shouldUseSourceMap
                     : isEnvDevelopment,
+                  modules: {
+                    mode: 'global',
+                    localIdentName: '[local]--[hash:base64:6]',
+                  },
                 },
                 'less-loader'
               ),
@@ -384,6 +388,10 @@ module.exports = function (webpackEnv) {
                   sourceMap: isEnvProduction
                     ? shouldUseSourceMap
                     : isEnvDevelopment,
+                  modules: {
+                    mode: 'global',
+                    localIdentName: '[local]--[hash:base64:6]',
+                  },
                   modules: {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
