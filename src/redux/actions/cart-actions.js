@@ -36,7 +36,6 @@ export const getUserParameter = (_userName, _passWord) => dispath => {
             setTimeout(() => {
                 isLogin = true;
                 dispath(login_ok({ userName, passWord, userType, isLogin }))
-                // dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
             }, 1000)
         } else {
             message.error('账号或密码错误!');
@@ -62,7 +61,6 @@ export const addUserParameter = (_userName, _passWord) => dispath => {
             setTimeout(() => {
                 isLogin = true;
                 dispath(login_ok({ userName, passWord, userType, isLogin }))
-                // dispath(login_ok({ userName: '张俊', passWord: '123456', userType: '1', isLogin: '0' }))
             }, 1000)
         } else {
             message.error(callBackData.message);
