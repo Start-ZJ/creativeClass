@@ -6,6 +6,8 @@ class Users extends React.Component {
             title: '1212'
         }
     }
+    componentWillMount(){        
+    }
     render() {
         return (
             <div>Users</div>

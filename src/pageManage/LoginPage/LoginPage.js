@@ -16,21 +16,21 @@ class LoginPage extends React.Component {
         }
     }
     componentWillMount() {
-        // this.funLogic();//不想测登录了，直接登录
+        this.funLogic();//不想测登录了，直接登录
     }
     /** @description 登录接口 */
     funLogic = () => {
         let { inputUserName, inputUserPassWord } = this.state;
-        if (inputUserName === '') {
-            message.info('请输入用户名！');
-            return;
-        }
-        if (inputUserPassWord === '') {
-            message.info('请输入用户密码！');
-            return;
-        }
-        store.dispatch(getUserParameter(inputUserName, inputUserPassWord));
-        // store.dispatch(getUserParameter('admin', '123456zj'));//测试时的默认密码
+        // if (inputUserName === '') {
+        //     message.info('请输入用户名！');
+        //     return;
+        // }
+        // if (inputUserPassWord === '') {
+        //     message.info('请输入用户密码！');
+        //     return;
+        // }
+        // store.dispatch(getUserParameter(inputUserName, inputUserPassWord));
+        store.dispatch(getUserParameter('admin', '123456zj'));//测试时的默认密码
     }
     /** @description 登录时简单的交互事件 */
     loginSimpleInteractiveEvents = (type, value) => {
