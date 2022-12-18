@@ -26,6 +26,7 @@ const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpack
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const postcssNormalize = require('postcss-normalize');
+const WebpackBar = require('webpackbar');
 const appPackageJson = require(paths.appPackageJson);
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 const webpackDevClientEntry = require.resolve(
@@ -411,6 +412,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
+      new WebpackBar(),
       new HtmlWebpackPlugin(
         Object.assign(
           {},

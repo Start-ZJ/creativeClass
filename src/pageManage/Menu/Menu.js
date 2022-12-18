@@ -1,7 +1,5 @@
 
 import {
-    Route,
-    HashRouter,
     BrowserHistory as Router,
     Link
 } from "react-router-dom";
@@ -17,7 +15,7 @@ const { SubMenu } = Menu;
 const renderUserImg = (userImg) => {
     return <div
         className='Navigation-userImg'>
-        <img src={require('./../../image/45df4d8148e5453b823e23e1f8308241_view_720.jpg').default} />
+        <img src={require('./../../image/45df4d8148e5453b823e23e1f8308241_view_720.jpg')} />
     </div>
 }
 class MenuDom extends React.Component {
@@ -28,7 +26,6 @@ class MenuDom extends React.Component {
         }
     }
     componentWillMount() {
-        console.log('this.props--->', this.props);
     }
     render() {
         const { current } = this.state;
@@ -37,14 +34,6 @@ class MenuDom extends React.Component {
         const userName = reduxState.UserState.userParams[0].userName;//用户姓名
         return (
             <div className={style.Router_content_Navigation}>
-                <div className='Router_content-Navigation_left'>
-                    {userImg && userImg.length > 0 ?
-                        renderUserImg(userImg) :
-                        <Avatar
-                            icon={<UserOutlined />}
-                        />}
-                    <div className='Navigation-userName'>{userName}</div>
-                </div>
                 <Menu
                     className='Router_contentMenu'
                     onClick={(e) => { this.setState({ current: e.key }); }}
@@ -57,7 +46,7 @@ class MenuDom extends React.Component {
                     <Menu.Item key="app" icon={<AppstoreOutlined />}>
                         <Link
                             to={{
-                                pathname: "/about", 
+                                pathname: "/about",
                                 state: { from: 'kk', state: '121' }
                             }}>精华</Link>
                     </Menu.Item>
@@ -66,6 +55,14 @@ class MenuDom extends React.Component {
                         <Menu.Item key="setting:3" onClick={() => { store.dispatch(login_out()); }}>退出</Menu.Item>
                     </SubMenu>
                 </Menu>
+                <div className='Router_content-Navigation_left'>
+                    <div className='Navigation-userName'>{userName}</div>
+                    {userImg && userImg.length > 0 ?
+                        renderUserImg(userImg) :
+                        <Avatar
+                            icon={<UserOutlined />}
+                        />}
+                </div>
             </div>
         )
     }

@@ -1,6 +1,6 @@
 import {
     BrowserRouter as Router,
-    Switch,
+    Routes,
     Route,
     HashRouter,
     Link
@@ -17,16 +17,6 @@ import MenuDom from './../pageManage/Menu/Menu';
 const mapStateToProps = state => ({
     isLogin: state.UserState.userParams[0].isLogin
 })
-const RouteWithSubRoutes = (route) => {
-    return (
-        <Route
-            path={route.path}
-            render={props => (
-                <route.component {...props} routes={route.routes} />
-            )}
-        />
-    );
-}
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -34,10 +24,7 @@ class App extends React.Component {
     }
     componentWillMount() {
     }
-    componentWillReceiveProps() {
-        // let reduxState = store.getState();
-        // console.log('reduxState', reduxState);
-    }
+    componentWillReceiveProps() { }
     render() {
         const reduxState = store.getState();
         const isLogin = reduxState.UserState.userParams[0].isLogin;//登录状态
@@ -47,11 +34,11 @@ class App extends React.Component {
                     {isLogin ?
                         <>
                             <MenuDom />
-                            <Switch>
+                            <Routes>
                                 {routesPage.map((route, i) => (
-                                    <RouteWithSubRoutes key={i} {...route} />
+                                    <Route path={route.path} element={route.component} key={`${i}_${route.path}`} />
                                 ))}
-                            </Switch>
+                            </Routes>
                         </>
                         : <LoginPage />
                     }

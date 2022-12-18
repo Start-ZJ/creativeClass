@@ -2,29 +2,28 @@
 import Home from './../pageManage/Home/Home';
 import About from './../pageManage/About/About';
 import Users from './../pageManage/Users/Users';
-import LoginPage from './../pageManage/LoginPage/LoginPage';
 import NoFindPage from './../pageManage/noFindPage/noFindPage';
 const routesPage = [
     {
         path: "/about",
-        component: About
+        component: <About />
     },
     {
         path: "/users",
-        component: Users
+        component: <Users />
     },
     {
         path: "/home",
-        component: Home
+        component: <Home />
     },
     {
         path: "/",
-        component: Home,
+        component: <Home />,
         exact: true
     },
     {
         path: "/noFindPage",
-        component: NoFindPage
+        component: <NoFindPage />
     },
 ];
 export { routesPage };
