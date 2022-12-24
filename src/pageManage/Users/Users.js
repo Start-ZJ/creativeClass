@@ -1,16 +1,22 @@
 import React from 'react';
-import { Upload, Icon, message } from 'antd';
-import { config } from './../../config'
+import { Upload, message, Input, Radio, DatePicker } from 'antd';
+import { config } from './../../config';
+import style from './less/User.less';
+import dayjs from 'dayjs';
+const { TextArea } = Input;
 class Users extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            imageUrl: ''
+            imageUrl: config.getUser().userImg,
+            userName: config.getUser().userName
         }
     }
+    componentWillUnmount() {
+        console.log('config.getUser()----->', config.getUser());
+    }
     handleChange(info) {
-        console.log('info---->', info)
         const { imageUrl } = this.state;
         if (info.file.status === 'uploading') {
             this.setState({ loading: true });
@@ -36,29 +42,61 @@ class Users extends React.Component {
         }
         return isJPG && isLt2M;
     }
-    render() {
-        const uploadButton = (
-            <div>
-                <div className="ant-upload-text">Upload</div>
+    /** @description 个人信息页面的列表 */
+    userFrom = () => {
+        const { userName, imageUrl, userSeX, userAge, userMemo = '' } = this.state;
+        const uploadButton = <div className="antUploadPng"></div>;
+        return (<div className='userFrom'>
+            <div className='userFromLine'>
+                <Upload
+                    name="avatar"
+                    listType="picture-card"
+                    className="avatar-uploader"
+                    showUploadList={false}
+                    action={`${config.port}/file/addFile`}
+                    beforeUpload={this
+                        .beforeUpload
+                        .bind(this)}
+                    onChange={this
+                        .handleChange
+                        .bind(this)}>
+                    {imageUrl ? <img src={imageUrl} alt="" /> : uploadButton}
+                </Upload>
             </div>
-        );
+            <div className='userFromLine'>
+                <div className='userFromLineLebal'><i>*</i>姓名:</div>
+                <Input
+                    className='userFromLineValue'
+                    value={userName}
+                />
+            </div>
+            <div className='userFromLine'>
+                <div className='userFromLineLebal'>性别:</div>
+                <Radio.Group value={userSeX}>
+                    <Radio value={'0'}>女</Radio>
+                    <Radio value={'1'}>男</Radio>
+                </Radio.Group>
+            </div>
+            <div className='userFromLine'>
+                <div className='userFromLineLebal'>出生日期:</div>
+                <DatePicker
+                    defaultValue={dayjs('2015/01/01', dateFormat)}
+                    format={'YYYY-MM-DD'} />
+            </div>
+            <div className='userFromLine'>
+                <div className='userFromLineLebal'>个人简介:</div>
+                <TextArea
+                    className='userFromLineValue'
+                    value={userMemo}
+                />
+            </div>
+        </div>)
+    }
+    render() {
         return (
-            <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action={`${config.port}/file/addFile`}
-                beforeUpload={this
-                    .beforeUpload
-                    .bind(this)}
-                onChange={this
-                    .handleChange
-                    .bind(this)}>
-                {this.state.imageUrl
-                    ? <img src={this.state.imageUrl} alt="" />
-                    : uploadButton}
-            </Upload>
+            <div className={style.userStyle}>
+                {this.userFrom()}
+            </div>
         );
     }
 }
